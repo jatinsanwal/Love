@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Mnku Ji 💗</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #ff9eb5, #ffc0cb);
+    color: #fff;
+    text-align: center;
+}
+
+.top-right {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+h1 {
+    font-size: 42px;
+    margin-top: 40px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.container {
+    padding: 20px;
+    font-size: 22px;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: auto;
+}
+
+.page {
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.next-btn {
+    margin: 40px;
+    padding: 15px 30px;
+    font-size: 20px;
+    background: white;
+    color: #ff4d6d;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+.next-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    color: #fff;
+    animation: floatUp 5s linear infinite;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="top-right" id="langLabel"></div>
+
+<h1 id="heading"></h1>
+
+<div class="container page" id="content"></div>
+
+<button class="next-btn" onclick="nextPage()">💗 Scroll then Next 💗</button>
+
+<script>
+let page = 1;
+
+function generateText(word) {
+    let text = "";
+    for (let i = 0; i < 1000; i++) {
+        text += word + " ";
+    }
+    return text;
+}
+
+function loadPage() {
+    let heading = document.getElementById("heading");
+    let content = document.getElementById("content");
+    let langLabel = document.getElementById("langLabel");
+
+    window.scrollTo(0,0);
+
+    if (page === 1) {
+        heading.innerText = "Sorry Mnku Ji 💗";
+        langLabel.innerText = "English";
+        content.innerText = generateText("Sorry");
+    }
+
+    else if (page === 2) {
+        heading.innerText = "Sorry Mnku Ji 💗";
+        langLabel.innerText = "Hindi";
+        content.innerText = generateText("माफ कर दीजिए");
+    }
+
+    else if (page === 3) {
+        heading.innerText = "Извини Mnku Ji 💗";
+        langLabel.innerText = "Russian";
+        content.innerText = generateText("Извини");
+    }
+
+    else if (page === 4) {
+        heading.innerText = "Désolé Mnku Ji 💗";
+        langLabel.innerText = "French";
+        content.innerText = generateText("Désolé");
+    }
+
+    else if (page === 5) {
+        heading.innerText = "Lo siento Mnku Ji 💗";
+        langLabel.innerText = "Spanish";
+        content.innerText = generateText("Lo siento");
+    }
+
+    else {
+        heading.innerText = "Ab to maaf kar do 😭💗";
+        content.innerHTML = "<h2>I really mean it 💗</h2>";
+        document.querySelector("button").style.display = "none";
+    }
+}
+
+function nextPage() {
+    page++;
+    loadPage();
+}
+
+// Floating hearts generator
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 300);
+
+loadPage();
+</script>
+
+</body>
+</html>
